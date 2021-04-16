@@ -31,9 +31,14 @@ def number_of_files_summary(info_dict):
     ftypes = np.unique(info_dict['file_type'])
     print(f"number of files: {len(info_dict['file_type'])}")
 
+    num_files_dict = {}
+
     for ftype in ftypes:
         count = np.sum(info_dict['file_type'] == ftype)
-        print("    {}: {:,}".format(ftype, count))  
+        num_files_dict[ftype] = count
+        print("    {}: {:,}".format(ftype, count))
+
+    return num_files_dict
     
 
 def find_max_or_min_file_size(info_dict, find='max'):
@@ -65,11 +70,23 @@ def format_bytes(size):
     return "{:.3f} {}".format(size,label)
 
 
+def count_num_images(info_dict):
+
+    is_image = (info_dict['file_type'] == 'jpg') | (info_dict['file_type'] == 'jpeg') | (info_dict['file_type'] == 'png')
+    
+    return is_image.sum()
+
+
 def main(zipfile_obj):
 
     infolist = zipfile_obj.infolist()
     info_dict = infolist_to_dict(infolist)
+
     number_of_files_summary(info_dict)
+
+    #num of images
+    num_images = count_num_images(info_dict)
+    print('number of images: {:,}'.format(num_images))
 
     for find in ['max','min']:
         fname, size = find_max_or_min_file_size(info_dict, find=find)

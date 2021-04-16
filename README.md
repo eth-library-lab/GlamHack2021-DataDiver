@@ -23,18 +23,19 @@ Aim to create a containerised process that takes a locally available filepath an
 # To Do 
 
 [X] get list of file in a zip (without unzipping it)  
-[X] return numbers of files in a zip (without unzipping it) 
+[X] return numbers of files in a zip (without unzipping it)  
 [ ] function to check file size of archive members before processing  
 [ ] make photo collage ( could unzip specific files )  
+[ ] make image resolution summary function
 
-lower priority
-[ ] name largest file
-[ ] name smallest file
+lower priority  
+[ ] name largest file  
+[ ] name smallest file  
 
-further Steps
-[ ] decide if core functions should be split into a module
-[ ] processes for tar files
-[ ] test speed of different methods
+further Steps  
+[ ] decide if core functions should be split into a module  
+[ ] processes for tar files  
+[ ] test speed of different methods  
 
 
 
