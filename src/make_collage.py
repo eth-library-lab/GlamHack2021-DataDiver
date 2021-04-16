@@ -8,7 +8,7 @@ import numpy as np
 import sys
 sys.path.append('../src')
 
-import files_summary
+from make_info_dict import infolist_to_dict
 
 
 def get_img_fpath_list(info_dict):
@@ -115,5 +115,5 @@ if __name__ == '__main__':
     zipfile_obj = zipfile.ZipFile(fpath, "r")
 
     infolist = zipfile_obj.infolist()
-    info_dict = files_summary.infolist_to_dict(infolist)
+    info_dict = infolist_to_dict(infolist)
     main(info_dict)
