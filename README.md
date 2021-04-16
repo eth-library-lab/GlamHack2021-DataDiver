@@ -27,14 +27,15 @@ Aim to create a containerised process that takes a locally available filepath an
 [ ] function to check file size of archive members before processing  
 [X] make photo collage ( could unzip specific files )  
 [ ] make image resolution summary function
-
+[ ] add flags for input parameters to scripts
+[ ] add summaries for csv files
 
 **Further Steps**  
-[ ] add processes for tar files  
-[ ] create microservice to run locally (e.g. Flask)
-[ ] containerise app with Docker
-[ ] decide if core functions should be split into a module  
-[ ] test speed of different methods  
+[ ] add support for tar files  
+[ ] create microservice to run locally (e.g. Flask)  
+[ ] containerise app with Docker  
+[ ] decide if core functions should be split into a module   
+[ ] test speed of different methods   
 
 
 
