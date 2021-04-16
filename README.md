@@ -1,5 +1,5 @@
 
-# [GLAMhack2021-DataDiver](https://hack.glam.opendata.ch/project/116)
+# [GLAMhack2021: Data-Diver](https://hack.glam.opendata.ch/project/116)
 _Automatically generate an overview of open source datasets_
 
 Project for [GLAMhack 2021](https://hack.glam.opendata.ch/) ( [#GLAMhack2021](https://twitter.com/search?q=GLAMhack2021) ) Fri 16th April - Sat 17th April
@@ -25,16 +25,15 @@ Aim to create a containerised process that takes a locally available filepath an
 [X] get list of file in a zip (without unzipping it)  
 [X] return numbers of files in a zip (without unzipping it)  
 [ ] function to check file size of archive members before processing  
-[ ] make photo collage ( could unzip specific files )  
+[X] make photo collage ( could unzip specific files )  
 [ ] make image resolution summary function
 
-lower priority  
-[ ] name largest file  
-[ ] name smallest file  
 
-further Steps  
+**Further Steps**  
+[ ] add processes for tar files  
+[ ] create microservice to run locally (e.g. Flask)
+[ ] containerise app with Docker
 [ ] decide if core functions should be split into a module  
-[ ] processes for tar files  
 [ ] test speed of different methods  
 
 
