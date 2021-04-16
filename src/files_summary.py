@@ -2,6 +2,13 @@ import os
 import zipfile
 import numpy as np
 
+
+
+def check_is_image(ftype):
+
+    return ftype in ['jpg', 'jpeg', 'png']
+
+
 def infolist_to_dict(infolist):
 
     """return a dict with some key attributes from the ZipInfo object"""
@@ -10,6 +17,7 @@ def infolist_to_dict(infolist):
         'filename':[],
         'file_size':[],
         'file_type':[],
+        'is_image':[]
         }
 
     for info in infolist:
@@ -19,6 +27,7 @@ def infolist_to_dict(infolist):
         info_dict['filename'].append(fname)
         info_dict['file_size'].append(info.file_size)
         info_dict['file_type'].append(ftype)
+        info_dict['is_image'].append(check_is_image(ftype))
 
     for k,v in info_dict.items():
         info_dict[k] = np.array(v)
@@ -70,11 +79,6 @@ def format_bytes(size):
     return "{:.3f} {}".format(size,label)
 
 
-def count_num_images(info_dict):
-
-    is_image = (info_dict['file_type'] == 'jpg') | (info_dict['file_type'] == 'jpeg') | (info_dict['file_type'] == 'png')
-    
-    return is_image.sum()
 
 
 def main(zipfile_obj):
@@ -85,7 +89,7 @@ def main(zipfile_obj):
     number_of_files_summary(info_dict)
 
     #num of images
-    num_images = count_num_images(info_dict)
+    num_images = info_dict['is_image'].sum()
     print('number of images: {:,}'.format(num_images))
 
     for find in ['max','min']:
