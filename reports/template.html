@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container>
+          <h3>Data Diver Summary for:</h3>
+          <h2>
+            {{filename}}
+          </h2>
+        </v-container>
+        <v-container>
+          <p>number of images:  {{summary_dict.num_images}}</p>
+          <p>number of files:  
+            <ul>
+              <li 
+                v-for="item in summary_dict.num_files"
+                :key="item.type">
+                {{item.type}}: {{item.number}}
+              </li>
+            </ul>
+          </p>
+
+          <p>
+          max file size:  {{summary_dict.max_file_size}} </br>
+          min file size:  {{summary_dict.max_file_size}}</p>
+        </v-container>
+        <v-container>
+          <img width="800px" src="./collage.png" />
+        </v-container>
+        <v-container>
+          <v-treeview
+            activatable
+            :items="file_tree"
+          ></v-treeview>
+        
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: {
+        filename: -FILENAME-,
+        summary_dict: -SUMMARY_DICT-,
+        total:0,
+        file_tree: -FILETREE-
+      },
+      methods:{
+      }
+    })
+  </script>
+</body>
+</html>

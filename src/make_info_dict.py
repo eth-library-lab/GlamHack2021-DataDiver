@@ -9,16 +9,18 @@ def check_is_image(ftype):
     return ftype in ['jpg', 'jpeg', 'png']
 
 
-def infolist_to_dict(infolist):
+def make_info_dict(zipfile_obj):
 
-    """return a dict with some key attributes from the ZipInfo object"""
+    """from a Zipfile object create dict with some convenient information from the ZipInfo object"""
      
     info_dict = {
         'filename':[],
         'file_size':[],
         'file_type':[],
-        'is_image':[]
+        'is_image':[],
         }
+
+    infolist = zipfile_obj.infolist()
 
     for info in infolist:
         # is it faster to store fname as a temp var or access the attribute twice?
@@ -31,5 +33,5 @@ def infolist_to_dict(infolist):
 
     for k,v in info_dict.items():
         info_dict[k] = np.array(v)
-    
+
     return info_dict

@@ -8,7 +8,7 @@ import numpy as np
 import sys
 sys.path.append('../src')
 
-from make_info_dict import infolist_to_dict
+from make_info_dict import make_info_dict
 
 
 def get_img_fpath_list(info_dict):
@@ -79,7 +79,7 @@ def create_collage(zipfile_obj,
     return collage
 
 
-def main(info_dict):
+def main(zipfile_obj, info_dict, output_dir):
 
     img_subpaths = get_img_fpath_list(info_dict)
 
@@ -103,7 +103,7 @@ def main(info_dict):
                             collage_size=collage_size,
                             imgs_per_side=imgs_per_side)
     
-    output_fpath = '../data/processed/collage.png'
+    output_fpath = os.path.join(output_dir, 'collage.png')
     collage.save(output_fpath)
     print(f'saved collage of sample images to {output_fpath}')
 
@@ -111,9 +111,9 @@ def main(info_dict):
 
 if __name__ == '__main__':
 
-    fpath = "../data/raw/graphische_sammlung_sample.zip"
+    zip_fpath = "../data/raw/graphische_sammlung_sample.zip"
+    output_fpath = '../data/processed/collage.png'
     zipfile_obj = zipfile.ZipFile(fpath, "r")
 
-    infolist = zipfile_obj.infolist()
-    info_dict = infolist_to_dict(infolist)
-    main(info_dict)
+    info_dict = make_info_dict(zipfile_obj)
+    main(zipfile_obj, info_dict, output_fpath)

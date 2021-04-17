@@ -1,8 +1,9 @@
 import os
 import zipfile
 import numpy as np
+from pprint import pprint
 
-from make_info_dict import infolist_to_dict
+from make_info_dict import make_info_dict
 
 
 def number_of_files_summary(info_dict):
@@ -10,14 +11,19 @@ def number_of_files_summary(info_dict):
     ftypes = np.unique(info_dict['file_type'])
     print(f"number of files: {len(info_dict['file_type'])}")
 
-    num_files_dict = {}
+    num_files_lst = []
 
     for ftype in ftypes:
         count = np.sum(info_dict['file_type'] == ftype)
-        num_files_dict[ftype] = count
+        obj = {
+            'type':ftype,
+            'number':count
+        }
+        num_files_lst.append(obj)
         print("    {}: {:,}".format(ftype, count))
 
-    return num_files_dict
+
+    return num_files_lst
     
 
 def find_max_or_min_file_size(info_dict, find='max'):
@@ -49,29 +55,37 @@ def format_bytes(size):
     return "{:.3f} {}".format(size,label)
 
 
-def main(zipfile_obj):
+def main(info_dict):
+    
+    summary_dict = {}
+    summary_dict['num_files'] = number_of_files_summary(info_dict)
 
-    infolist = zipfile_obj.infolist()
-    info_dict = infolist_to_dict(infolist)
-
-    number_of_files_summary(info_dict)
-
+    
     #num of images
     num_images = info_dict['is_image'].sum()
+
     print('number of images: {:,}'.format(num_images))
+    summary_dict['num_images'] = num_images
 
     for find in ['max','min']:
         fname, size = find_max_or_min_file_size(info_dict, find=find)
-        print('{} file size:\n    {} \n    {}'.format(find, fname, format_bytes(size)))
+        
+        file_size_str = '{}  {}'.format(fname, format_bytes(size))
+        print(f'{find} file size: {file_size_str}')
+        summary_dict['{}_file_size'.format(find)] = file_size_str
 
-    size = info_dict['file_size'].mean()
-    print('{} file size:\n    {}'.format('average', format_bytes(size)))
+    mean_file_size = info_dict['file_size'].mean()
+    mean_file_size_frmtd = format_bytes(mean_file_size)
+    mean_file_size_str = '{} file size:\n    {}'.format('average', mean_file_size_frmtd)
+    print(mean_file_size_str)
+    summary_dict['mean_file_size'] = mean_file_size_str
 
-    return
+    return summary_dict
 
 
 if __name__ =='__main__':
 
     fpath = "../data/raw/graphische_sammlung_sample.zip"
     zipfile_obj = zipfile.ZipFile(fpath, "r")
-    main(zipfile_obj)
+    info_dict = make_info_dict(zipfile_obj)
+    main(info_dict)
