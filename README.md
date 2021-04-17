@@ -20,10 +20,22 @@ Aim to create a containerised process that takes a locally available filepath an
 * numbers of each file types
 * if csv's are present create summary statistics with data quality 
 
+## How it Works
+
+### as serverside microservice  
+
+to follow
+
+### as locally run app
+to follow
+
 # To Do 
 
 [X] get list of file in a zip (without unzipping it)  
 [X] return numbers of files in a zip (without unzipping it)  
+[ ] use print statements to create a report in json
+[ ] generate report as standalone html file  
+[ ] create flask endpoint that accepts filepath as parameter and return json summary and image collage
 [ ] function to check file size of archive members before processing  
 [X] make photo collage ( could unzip specific files )  
 [ ] make image resolution summary function
