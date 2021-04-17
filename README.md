@@ -27,7 +27,10 @@ Aim to create a containerised process that takes a locally available filepath an
 to follow
 
 ### as locally run app
-to follow
+in the src folder
+```
+python3 output_html.py
+```
 
 # To Do 
 
