@@ -58,6 +58,7 @@ def format_bytes(size):
 def main(info_dict):
     
     summary_dict = {}
+    summary_dict['total_num_files'] = len(info_dict['filename'])
     summary_dict['num_files'] = number_of_files_summary(info_dict)
 
     

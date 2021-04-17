@@ -12,31 +12,38 @@
     <v-app>
       <v-main>
         <v-container>
-          <h3>Data Diver Summary for:</h3>
-          <h2>
-            {{filename}}
-          </h2>
+          <h2>Data Diver Summary for: {{filename}}</h2>
+
         </v-container>
         <v-container>
+          <h4> total number of files: {{summary_dict.total_num_files}} </h4>
+          <v-simple-table class="my-1">
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">File Type</th>
+                  <th class="text-left">Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in summary_dict.num_files" :key="item.type">
+                  <td>{{ item.type }}</td>
+                  <td>{{ item.number }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
           <p>number of images:  {{summary_dict.num_images}}</p>
-          <p>number of files:  
-            <ul>
-              <li 
-                v-for="item in summary_dict.num_files"
-                :key="item.type">
-                {{item.type}}: {{item.number}}
-              </li>
-            </ul>
-          </p>
-
           <p>
           max file size:  {{summary_dict.max_file_size}} </br>
-          min file size:  {{summary_dict.max_file_size}}</p>
+          min file size:  {{summary_dict.min_file_size}}</p>
         </v-container>
         <v-container>
+          <h5>Image Collage</h5>
           <img width="800px" src="./collage.png" />
         </v-container>
         <v-container>
+          <h5>File Explorer</h5>
           <v-treeview
             activatable
             :items="file_tree"
