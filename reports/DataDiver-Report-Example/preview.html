@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+</head>
+<body>
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container>
+          <h2>Data Diver Summary for: {{filename}}</h2>
+
+        </v-container>
+        <v-container>
+          <h4> total number of files: {{summary_dict.total_num_files}} </h4>
+          <v-simple-table class="my-1">
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">File Type</th>
+                  <th class="text-left">Count</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in summary_dict.num_files" :key="item.type">
+                  <td>{{ item.type }}</td>
+                  <td>{{ item.number }}</td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+          <p>number of images:  {{summary_dict.num_images}}</p>
+          <p>
+          max file size:  {{summary_dict.max_file_size}} </br>
+          min file size:  {{summary_dict.min_file_size}}</p>
+        </v-container>
+        <v-container>
+          <h5>Image Collage</h5>
+          <img width="800px" src="./collage.png" />
+        </v-container>
+        <v-container>
+          <h5>File Explorer</h5>
+          <v-treeview
+            activatable
+            :items="file_tree"
+          ></v-treeview>
+        
+      </v-main>
+    </v-app>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      data: {
+        filename: '../data/raw/graphische_sammlung_sample.zip',
+        summary_dict: {'total_num_files': 359, 'num_files': [{'type': 'csv', 'number': 1}, {'type': 'png', 'number': 358}], 'num_images': 358, 'max_file_size': '2/2803.png  329.126 kilobytes', 'min_file_size': '1/1288.png  62.265 kilobytes', 'mean_file_size': 'average file size:\n    206.013 kilobytes'},
+        total:0,
+        file_tree: [{'id': 115, 'name': '0', 'children': [{'id': 0, 'name': '128.png'}, {'id': 1, 'name': '133.png'}, {'id': 2, 'name': '140.png'}, {'id': 3, 'name': '149.png'}, {'id': 4, 'name': '152.png'}, {'id': 5, 'name': '164.png'}, {'id': 6, 'name': '172.png'}, {'id': 7, 'name': '179.png'}, {'id': 8, 'name': '18.png'}, {'id': 9, 'name': '189.png'}, {'id': 10, 'name': '19.png'}, {'id': 11, 'name': '218.png'}, {'id': 12, 'name': '219.png'}, {'id': 13, 'name': '221.png'}, {'id': 14, 'name': '224.png'}, {'id': 15, 'name': '236.png'}, {'id': 16, 'name': '240.png'}, {'id': 17, 'name': '264.png'}, {'id': 18, 'name': '277.png'}, {'id': 19, 'name': '285.png'}, {'id': 20, 'name': '287.png'}, {'id': 21, 'name': '3.png'}, {'id': 22, 'name': '300.png'}, {'id': 23, 'name': '312.png'}, {'id': 24, 'name': '313.png'}, {'id': 25, 'name': '324.png'}, {'id': 26, 'name': '327.png'}, {'id': 27, 'name': '33.png'}, {'id': 28, 'name': '336.png'}, {'id': 29, 'name': '346.png'}, {'id': 30, 'name': '351.png'}, {'id': 31, 'name': '356.png'}, {'id': 32, 'name': '388.png'}, {'id': 33, 'name': '397.png'}, {'id': 34, 'name': '398.png'}, {'id': 35, 'name': '419.png'}, {'id': 36, 'name': '420.png'}, {'id': 37, 'name': '421.png'}, {'id': 38, 'name': '430.png'}, {'id': 39, 'name': '450.png'}, {'id': 40, 'name': '451.png'}, {'id': 41, 'name': '458.png'}, {'id': 42, 'name': '460.png'}, {'id': 43, 'name': '461.png'}, {'id': 44, 'name': '465.png'}, {'id': 45, 'name': '470.png'}, {'id': 46, 'name': '476.png'}, {'id': 47, 'name': '492.png'}, {'id': 48, 'name': '511.png'}, {'id': 49, 'name': '512.png'}, {'id': 50, 'name': '513.png'}, {'id': 51, 'name': '52.png'}, {'id': 52, 'name': '520.png'}, {'id': 53, 'name': '531.png'}, {'id': 54, 'name': '549.png'}, {'id': 55, 'name': '556.png'}, {'id': 56, 'name': '567.png'}, {'id': 57, 'name': '57.png'}, {'id': 58, 'name': '576.png'}, {'id': 59, 'name': '592.png'}, {'id': 60, 'name': '599.png'}, {'id': 61, 'name': '601.png'}, {'id': 62, 'name': '602.png'}, {'id': 63, 'name': '605.png'}, {'id': 64, 'name': '61.png'}, {'id': 65, 'name': '610.png'}, {'id': 66, 'name': '616.png'}, {'id': 67, 'name': '617.png'}, {'id': 68, 'name': '620.png'}, {'id': 69, 'name': '628.png'}, {'id': 70, 'name': '631.png'}, {'id': 71, 'name': '638.png'}, {'id': 72, 'name': '646.png'}, {'id': 73, 'name': '650.png'}, {'id': 74, 'name': '655.png'}, {'id': 75, 'name': '67.png'}, {'id': 76, 'name': '680.png'}, {'id': 77, 'name': '688.png'}, {'id': 78, 'name': '689.png'}, {'id': 79, 'name': '690.png'}, {'id': 80, 'name': '700.png'}, {'id': 81, 'name': '705.png'}, {'id': 82, 'name': '714.png'}, {'id': 83, 'name': '725.png'}, {'id': 84, 'name': '731.png'}, {'id': 85, 'name': '741.png'}, {'id': 86, 'name': '747.png'}, {'id': 87, 'name': '75.png'}, {'id': 88, 'name': '772.png'}, {'id': 89, 'name': '774.png'}, {'id': 90, 'name': '781.png'}, {'id': 91, 'name': '786.png'}, {'id': 92, 'name': '791.png'}, {'id': 93, 'name': '799.png'}, {'id': 94, 'name': '805.png'}, {'id': 95, 'name': '811.png'}, {'id': 96, 'name': '817.png'}, {'id': 97, 'name': '82.png'}, {'id': 98, 'name': '835.png'}, {'id': 99, 'name': '846.png'}, {'id': 100, 'name': '856.png'}, {'id': 101, 'name': '862.png'}, {'id': 102, 'name': '887.png'}, {'id': 103, 'name': '903.png'}, {'id': 104, 'name': '907.png'}, {'id': 105, 'name': '912.png'}, {'id': 106, 'name': '934.png'}, {'id': 107, 'name': '945.png'}, {'id': 108, 'name': '95.png'}, {'id': 109, 'name': '953.png'}, {'id': 110, 'name': '955.png'}, {'id': 111, 'name': '956.png'}, {'id': 112, 'name': '965.png'}, {'id': 113, 'name': '969.png'}, {'id': 114, 'name': '977.png'}, {'id': 115, 'name': '987.png'}]}, {'id': 116, 'name': '1', 'children': [{'id': 0, 'name': '1016.png'}, {'id': 1, 'name': '1027.png'}, {'id': 2, 'name': '1028.png'}, {'id': 3, 'name': '1031.png'}, {'id': 4, 'name': '1046.png'}, {'id': 5, 'name': '1048.png'}, {'id': 6, 'name': '1060.png'}, {'id': 7, 'name': '1063.png'}, {'id': 8, 'name': '1064.png'}, {'id': 9, 'name': '1067.png'}, {'id': 10, 'name': '1071.png'}, {'id': 11, 'name': '1086.png'}, {'id': 12, 'name': '1094.png'}, {'id': 13, 'name': '1103.png'}, {'id': 14, 'name': '1111.png'}, {'id': 15, 'name': '1113.png'}, {'id': 16, 'name': '1117.png'}, {'id': 17, 'name': '1126.png'}, {'id': 18, 'name': '1128.png'}, {'id': 19, 'name': '1131.png'}, {'id': 20, 'name': '1132.png'}, {'id': 21, 'name': '1142.png'}, {'id': 22, 'name': '1143.png'}, {'id': 23, 'name': '1144.png'}, {'id': 24, 'name': '1168.png'}, {'id': 25, 'name': '1177.png'}, {'id': 26, 'name': '1182.png'}, {'id': 27, 'name': '1207.png'}, {'id': 28, 'name': '1237.png'}, {'id': 29, 'name': '1250.png'}, {'id': 30, 'name': '1251.png'}, {'id': 31, 'name': '1256.png'}, {'id': 32, 'name': '1265.png'}, {'id': 33, 'name': '1279.png'}, {'id': 34, 'name': '1280.png'}, {'id': 35, 'name': '1281.png'}, {'id': 36, 'name': '1282.png'}, {'id': 37, 'name': '1288.png'}, {'id': 38, 'name': '1293.png'}, {'id': 39, 'name': '1297.png'}, {'id': 40, 'name': '1304.png'}, {'id': 41, 'name': '1311.png'}, {'id': 42, 'name': '1313.png'}, {'id': 43, 'name': '1319.png'}, {'id': 44, 'name': '1323.png'}, {'id': 45, 'name': '1341.png'}, {'id': 46, 'name': '1350.png'}, {'id': 47, 'name': '1374.png'}, {'id': 48, 'name': '1375.png'}, {'id': 49, 'name': '1376.png'}, {'id': 50, 'name': '1392.png'}, {'id': 51, 'name': '1407.png'}, {'id': 52, 'name': '1413.png'}, {'id': 53, 'name': '1415.png'}, {'id': 54, 'name': '1422.png'}, {'id': 55, 'name': '1424.png'}, {'id': 56, 'name': '1433.png'}, {'id': 57, 'name': '1452.png'}, {'id': 58, 'name': '1456.png'}, {'id': 59, 'name': '1467.png'}, {'id': 60, 'name': '1475.png'}, {'id': 61, 'name': '1498.png'}, {'id': 62, 'name': '1503.png'}, {'id': 63, 'name': '1510.png'}, {'id': 64, 'name': '1513.png'}, {'id': 65, 'name': '1520.png'}, {'id': 66, 'name': '1528.png'}, {'id': 67, 'name': '1542.png'}, {'id': 68, 'name': '1552.png'}, {'id': 69, 'name': '1554.png'}, {'id': 70, 'name': '1556.png'}, {'id': 71, 'name': '1593.png'}, {'id': 72, 'name': '1595.png'}, {'id': 73, 'name': '1597.png'}, {'id': 74, 'name': '1608.png'}, {'id': 75, 'name': '1622.png'}, {'id': 76, 'name': '1640.png'}, {'id': 77, 'name': '1642.png'}, {'id': 78, 'name': '1645.png'}, {'id': 79, 'name': '1647.png'}, {'id': 80, 'name': '1653.png'}, {'id': 81, 'name': '1656.png'}, {'id': 82, 'name': '1674.png'}, {'id': 83, 'name': '1680.png'}, {'id': 84, 'name': '1692.png'}, {'id': 85, 'name': '1694.png'}, {'id': 86, 'name': '1708.png'}, {'id': 87, 'name': '1712.png'}, {'id': 88, 'name': '1739.png'}, {'id': 89, 'name': '1743.png'}, {'id': 90, 'name': '1754.png'}, {'id': 91, 'name': '1768.png'}, {'id': 92, 'name': '1780.png'}, {'id': 93, 'name': '1784.png'}, {'id': 94, 'name': '1809.png'}, {'id': 95, 'name': '1811.png'}, {'id': 96, 'name': '1815.png'}, {'id': 97, 'name': '1851.png'}, {'id': 98, 'name': '1857.png'}, {'id': 99, 'name': '1858.png'}, {'id': 100, 'name': '1868.png'}, {'id': 101, 'name': '1871.png'}, {'id': 102, 'name': '1874.png'}, {'id': 103, 'name': '1879.png'}, {'id': 104, 'name': '1883.png'}, {'id': 105, 'name': '1888.png'}, {'id': 106, 'name': '1894.png'}, {'id': 107, 'name': '1905.png'}, {'id': 108, 'name': '1913.png'}, {'id': 109, 'name': '1924.png'}, {'id': 110, 'name': '1925.png'}, {'id': 111, 'name': '1940.png'}, {'id': 112, 'name': '1946.png'}, {'id': 113, 'name': '1950.png'}, {'id': 114, 'name': '1971.png'}, {'id': 115, 'name': '1973.png'}, {'id': 116, 'name': '1985.png'}]}, {'id': 124, 'name': '2', 'children': [{'id': 0, 'name': '2002.png'}, {'id': 1, 'name': '2005.png'}, {'id': 2, 'name': '2006.png'}, {'id': 3, 'name': '2016.png'}, {'id': 4, 'name': '2018.png'}, {'id': 5, 'name': '2029.png'}, {'id': 6, 'name': '2032.png'}, {'id': 7, 'name': '2058.png'}, {'id': 8, 'name': '2078.png'}, {'id': 9, 'name': '2081.png'}, {'id': 10, 'name': '2082.png'}, {'id': 11, 'name': '2086.png'}, {'id': 12, 'name': '2091.png'}, {'id': 13, 'name': '2117.png'}, {'id': 14, 'name': '2123.png'}, {'id': 15, 'name': '2134.png'}, {'id': 16, 'name': '2140.png'}, {'id': 17, 'name': '2141.png'}, {'id': 18, 'name': '2142.png'}, {'id': 19, 'name': '2144.png'}, {'id': 20, 'name': '2148.png'}, {'id': 21, 'name': '2172.png'}, {'id': 22, 'name': '2179.png'}, {'id': 23, 'name': '2230.png'}, {'id': 24, 'name': '2241.png'}, {'id': 25, 'name': '2243.png'}, {'id': 26, 'name': '2245.png'}, {'id': 27, 'name': '2253.png'}, {'id': 28, 'name': '2260.png'}, {'id': 29, 'name': '2281.png'}, {'id': 30, 'name': '2282.png'}, {'id': 31, 'name': '2297.png'}, {'id': 32, 'name': '2301.png'}, {'id': 33, 'name': '2311.png'}, {'id': 34, 'name': '2317.png'}, {'id': 35, 'name': '2336.png'}, {'id': 36, 'name': '2346.png'}, {'id': 37, 'name': '2350.png'}, {'id': 38, 'name': '2351.png'}, {'id': 39, 'name': '2359.png'}, {'id': 40, 'name': '2375.png'}, {'id': 41, 'name': '2378.png'}, {'id': 42, 'name': '2380.png'}, {'id': 43, 'name': '2388.png'}, {'id': 44, 'name': '2396.png'}, {'id': 45, 'name': '2404.png'}, {'id': 46, 'name': '2414.png'}, {'id': 47, 'name': '2421.png'}, {'id': 48, 'name': '2423.png'}, {'id': 49, 'name': '2430.png'}, {'id': 50, 'name': '2440.png'}, {'id': 51, 'name': '2444.png'}, {'id': 52, 'name': '2454.png'}, {'id': 53, 'name': '2459.png'}, {'id': 54, 'name': '2478.png'}, {'id': 55, 'name': '2486.png'}, {'id': 56, 'name': '2505.png'}, {'id': 57, 'name': '2508.png'}, {'id': 58, 'name': '2512.png'}, {'id': 59, 'name': '2524.png'}, {'id': 60, 'name': '2530.png'}, {'id': 61, 'name': '2562.png'}, {'id': 62, 'name': '2569.png'}, {'id': 63, 'name': '2570.png'}, {'id': 64, 'name': '2578.png'}, {'id': 65, 'name': '2591.png'}, {'id': 66, 'name': '2595.png'}, {'id': 67, 'name': '2598.png'}, {'id': 68, 'name': '2604.png'}, {'id': 69, 'name': '2616.png'}, {'id': 70, 'name': '2646.png'}, {'id': 71, 'name': '2650.png'}, {'id': 72, 'name': '2651.png'}, {'id': 73, 'name': '2653.png'}, {'id': 74, 'name': '2655.png'}, {'id': 75, 'name': '2664.png'}, {'id': 76, 'name': '2667.png'}, {'id': 77, 'name': '2680.png'}, {'id': 78, 'name': '2685.png'}, {'id': 79, 'name': '2693.png'}, {'id': 80, 'name': '2694.png'}, {'id': 81, 'name': '2701.png'}, {'id': 82, 'name': '2713.png'}, {'id': 83, 'name': '2715.png'}, {'id': 84, 'name': '2716.png'}, {'id': 85, 'name': '2723.png'}, {'id': 86, 'name': '2726.png'}, {'id': 87, 'name': '2728.png'}, {'id': 88, 'name': '2731.png'}, {'id': 89, 'name': '2746.png'}, {'id': 90, 'name': '2760.png'}, {'id': 91, 'name': '2781.png'}, {'id': 92, 'name': '2786.png'}, {'id': 93, 'name': '2793.png'}, {'id': 94, 'name': '2801.png'}, {'id': 95, 'name': '2803.png'}, {'id': 96, 'name': '2804.png'}, {'id': 97, 'name': '2806.png'}, {'id': 98, 'name': '2807.png'}, {'id': 99, 'name': '2808.png'}, {'id': 100, 'name': '2812.png'}, {'id': 101, 'name': '2816.png'}, {'id': 102, 'name': '2831.png'}, {'id': 103, 'name': '2833.png'}, {'id': 104, 'name': '2834.png'}, {'id': 105, 'name': '2838.png'}, {'id': 106, 'name': '2849.png'}, {'id': 107, 'name': '2855.png'}, {'id': 108, 'name': '2863.png'}, {'id': 109, 'name': '2866.png'}, {'id': 110, 'name': '2884.png'}, {'id': 111, 'name': '2887.png'}, {'id': 112, 'name': '2899.png'}, {'id': 113, 'name': '2907.png'}, {'id': 114, 'name': '2929.png'}, {'id': 115, 'name': '2947.png'}, {'id': 116, 'name': '2961.png'}, {'id': 117, 'name': '2962.png'}, {'id': 118, 'name': '2964.png'}, {'id': 119, 'name': '2972.png'}, {'id': 120, 'name': '2974.png'}, {'id': 121, 'name': '2979.png'}, {'id': 122, 'name': '2980.png'}, {'id': 123, 'name': '2982.png'}, {'id': 124, 'name': '2994.png'}]}]
+      },
+      methods:{
+      }
+    })
+  </script>
+</body>
+</html>
